@@ -30,19 +30,13 @@ class WeatherApi{
                         let decoder = JSONDecoder()
                         decoder.dateDecodingStrategy = .secondsSince1970
                         let weather = try decoder.decode(Weather.self, from: jsonData)
-//                        let utcDiff = TimeZone.current.secondsFromGMT() / 3600
-//                        let noon = DateComponents(hour: 12 + utcDiff, minute: 0, second: 0)
-//                        let noonDate = weather.list.filter{Calendar.current.date($0.dt, matchesComponents: noon)}
                         completion(weather)
                     } catch {
                         print(error)
                         completion(nil)
                     }
                 case 404:
-                    print("err")
-//                    DispatchQueue.main.async {
-//                        self.displayAlertMessage(msg: "Network Problem")
-//                    }
+                    print("404 Error")
                 default: print("Error")
                 
                 }
@@ -50,14 +44,5 @@ class WeatherApi{
         }
         task.resume()
         session.finishTasksAndInvalidate()
-    }
-    
-//    func displayAlertMessage(msg: String){
-//           let alert = UIAlertController(title: "Sorry !", message: msg, preferredStyle: .alert)
-//           let okAction = UIAlertAction(title: "Back",style: .default, handler: nil)
-//           alert.addAction(okAction)
-//           self.present(alert, animated: true, completion: nil)
-//
-//       }
-    
+    }    
 }

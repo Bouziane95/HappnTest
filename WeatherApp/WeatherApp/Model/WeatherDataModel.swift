@@ -14,7 +14,7 @@ struct Weather: Codable{
 struct ListWeather: Codable{
     let main : WeatherTemp
     let weather : [WeatherCondition]
-    let dt : Date
+    let dt : Double
     let wind : Wind
 }
 
